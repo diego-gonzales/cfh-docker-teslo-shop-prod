@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  app:
+    image: diegoegj/teslo-shop:1.0.0
+    # depends_on:
+    #   - db
+    restart: always
+    container_name: teslo-shop-backend-app
+    ports:
+      - ${PORT}:${PORT}
+    env_file:
+      - .env # Es mejor que declarar las variables de entorno en el archivo docker-compose.yml
+
+# Ya no es necesario declarar el servicio de la base de datos, ya que se está usando una base de datos en la nube (Azure)
+# db:
+#   image: postgres:14.3
+#   restart: always
+#   ports:
+#     - '5432:5432'
+#   environment:
+#     POSTGRES_PASSWORD: ${DB_PASSWORD}
+#     POSTGRES_DB: ${DB_NAME}
+#   container_name: ${DB_CONTAINER_NAME}
+#   volumes:
+#     - postgres-db:/var/lib/postgresql/data
+
+# volumes:
+#   postgres-db:
+#     external: false
